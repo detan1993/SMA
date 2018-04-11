@@ -16,6 +16,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AccountProvider } from '../providers/account/account';
+import { ProductProvider } from '../providers/product/product';
+import { OrderProvider } from '../providers/order/order';
+import { VoucherProvider } from '../providers/voucher/voucher';
 
 
 @NgModule({
@@ -49,7 +52,10 @@ import { AccountProvider } from '../providers/account/account';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AccountProvider
+    AccountProvider,
+    ProductProvider,
+    OrderProvider,
+    VoucherProvider
   ]
 })
 export class AppModule {}
