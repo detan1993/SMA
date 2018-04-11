@@ -1,17 +1,59 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+<ion-header class="home_header">
+<h2 style="color:black; text-align:center; font-weight: bold; font-family:open-sans"> Sportify </h2>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content padding class="home_Content">
+
+  <!-- <ion-searchbar
+  [(ngModel)]="myInput"
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar> -->
+<ion-searchbar style="background-color:grey; color: black; border-radius: 2px;opacity:0.4;" (ionInput)="getItems($event)"></ion-searchbar>
+
+<h4> Latest Product </h4>
+<ion-grid class="home_grid">
+  <!-- //*ngFor="let row of grid" -->
+    <ion-scroll scrollX="true" style="width:300; height:170px" >
+        <ion-row nowrap class="headerChip">
+                <ion-col><!-- dimensions set using input properties -->
+                <ion-img width="120" height="120" src="../assets/imgs/MadridTest.jpg"></ion-img></ion-col>
+                <ion-col>
+                <ion-img width="120" height="120" src="../assets/imgs/ArseTest.jpg"></ion-img>
+                </ion-col>
+                <ion-col>
+               <ion-img width="120" height="120" src="../assets/imgs/chealseaTest.jpg"></ion-img> </ion-col>
+          </ion-row>
+      </ion-scroll>
+</ion-grid>
+
+
+<h4> Choose Your Jersey </h4>
+<ion-grid class="home_grid">
+  <!-- //*ngFor="let row of grid" -->
+    <ion-row >
+         <ion-col><!-- dimensions set using input properties -->
+         <ion-img width="185" height="185" src="../assets/imgs/MadridTest.jpg"></ion-img></ion-col>
+         <ion-col>
+         <ion-img width="185" height="185" src="../assets/imgs/ArseTest.jpg"></ion-img>
+        </ion-col>
+    </ion-row>
+    <ion-row >
+         <ion-col ><!-- dimensions set using input properties -->
+         <ion-img width="185" height="185" src="../assets/imgs/MadridTest.jpg"></ion-img></ion-col>
+         <ion-col >
+         <ion-img width="185" height="185" src="../assets/imgs/ArseTest.jpg"></ion-img>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
+
+
+<!-- <ion-list>
+  <ion-item *ngFor="let item of items">
+    {{ item }}
+  </ion-item>
+</ion-list> -->
+
 </ion-content>
