@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+import { ProductProvider } from '../../providers/product/product';
+import { Product } from '../../Entities/Product';
 
 @Component({
   selector: 'page-home',
@@ -17,7 +19,7 @@ export class HomePage {
   images: Array<string>;
   grid: Array<Array<string>>; //array of arrays
 
-  constructor(public navCtrl: NavController , 	public toastCtrl: ToastController ) {
+  constructor(public navCtrl: NavController , 	public toastCtrl: ToastController, public productProvider: ProductProvider ) {
      this.initializeItems();
      this.horImgHeight = 40;
      this.horImgWidth = 40;
@@ -52,7 +54,7 @@ export class HomePage {
   });
 
   toast.present();
-
+  this.getAllActiveProducts();
 
   }
 
@@ -70,6 +72,20 @@ getItems(ev: any) {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }*/
+  }
+  
+  getAllActiveProducts(){
+	  console.log("Home.ts getAllActiveProducts() called");
+	  this.productProvider.getAllActiveProducts().subscribe(
+		  response =>{
+			  console.log("Response received");
+			  this.products = response.productList
+			  console.log(this.products);
+		  },
+		  error => {
+			  console.log("HTTP " + error.status + ": " + error.error.message);
+		  }
+	  );
   }
 
 }

@@ -1,5 +1,5 @@
-import {ProductSize} from '../../Entities/ProductSize';
-import {Images} from '../../Entities/Images';
+import {ProductSize} from './ProductSize';
+import {Images} from './Images';
 
 export class Product{
   id:number;
@@ -10,11 +10,11 @@ export class Product{
   team:String;
   gender:String;
   country:String;
-  dateCreated:String;
+  dateCreated:Date;
   status:String;
 
-  imageList :Images[];
-  sizeList: ProductSize[];
+  images :Images[];
+  sizes: ProductSize[];
 
 
   constructor(){
