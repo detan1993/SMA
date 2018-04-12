@@ -5,7 +5,7 @@ page-home {
 
 .home_Content{
 background-color: white;
-opacity:0.8;
+
 
 }
 .home_Content h2{
@@ -26,4 +26,12 @@ opacity:0.8;
 .home_grid{
   //opacity:0.8;
 //  background-color: black;
+}
+
+.cart_Button{
+  background-color: black;
+  color:white;
+  width: 90px;
+  height: 30px;
+
 }

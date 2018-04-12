@@ -15,29 +15,31 @@
 						<img src="test.jpg"/><br>
 						<ion-item>
 							<ion-label>Size</ion-label>
-							<ion-select placeholder="Size"  [(ngModel)]="product.selectedSize" > 
+							<ion-select placeholder="Size"  [(ngModel)]="product.selectedSize" >
 								<ion-option *ngFor="let size of product.sizes" value="{{size.size}}">
 									{{size.size}}
 								</ion-option>
 							</ion-select>
 						</ion-item>
-						
+
 						<br>
-						Quantity: <ion-input type="number" [(ngModel)]="product.selectedQuantity"></ion-input>
+						Quantity: <ion-input style="background-color:lightGrey; height:30px; opacity:0.2;" type="number" [(ngModel)]="product.selectedQuantity"></ion-input>
 						<br>
-						<button [disabled]="checkInput(product)" (click)="addCartItem(product)">Add to Cart</button>
+						 <!-- [disabled]="checkInput(product) The button does not looks nice if we show disable = true.
+						 Hence you need to do validation at the front end. Just use the alert pop up that i used in login"  !-->
+						<button (click)="addCartItem(product)" class="cart_Button">Add to Cart</button>
 					</ion-card-content>
 				</ion-card>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-	
+
 <h4>Retrieve All Unused Vouchers for customer</h4>
 	<ion-item *ngFor="let voucher of vouchers;">
 		{{voucher.id}}
 	</ion-item>
-		
-	
+
+
 <h4> Latest Product </h4>
 <ion-grid class="home_grid">
   <!-- //*ngFor="let row of grid" -->

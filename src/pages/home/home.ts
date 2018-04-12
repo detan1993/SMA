@@ -15,7 +15,7 @@ export class HomePage {
   products : Product[];
   vouchers : Voucher[];
   newProducts: Product[];
-  
+
   horImgHeight:number;
   horImgWidth:number;
   row :number;
@@ -82,7 +82,7 @@ export class HomePage {
       })
     }*/
   }
-  
+
   getAllActiveProducts(){
 	  console.log("Home.ts getAllActiveProducts() called");
 	  this.productProvider.getAllActiveProducts().subscribe(
@@ -96,7 +96,7 @@ export class HomePage {
 		  }
 	  );
   }
-  
+
   getAllVouchers(){
 	  console.log("Voucher.ts getAllVouchers() called");
 	  this.voucherProvider.getAllVouchers(this.customerId).subscribe(
@@ -114,11 +114,25 @@ export class HomePage {
   addCartItem(newProduct: Product){
 	  console.log("Added to Cart: " + newProduct);
 	  this.newProducts.push(newProduct);
+    //Storing latest products object to Session Storage
+
+
+    let customerCart = JSON.parse(sessionStorage.getItem("customerCart"));
+    if(customerCart > 0){
+      //customer have previous added items to cart so you need to get the items from the cart and append new items to customer ecisitng carts
+      //and store it back to session
+      //help me double check my code. I think there are some missing code. Good night
+    }else{
+      console.log("cart is empty");
+      sessionStorage.setItem("customerCart" , JSON.stringify(this.newProducts));
+    }
+
   }
-  
+
   checkInput(item: Product){
 	  if (!(typeof item.selectedSize === "undefined" || typeof item.selectedQuantity === "undefined")){
 		console.log("Validate(Selected Size Length: " + item.selectedSize.length + " Selected Quantity: " + item.selectedQuantity + ")");
+
 		console.log(item.selectedQuantity>0);
 		console.log(item.selectedSize.length>0);
 	  }
