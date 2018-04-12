@@ -67,6 +67,7 @@ export class LoginPage {
          console.log("SUCCESS with response " + response.fullname);
          sessionStorage.setItem("userIsLogin", "true");
          sessionStorage.setItem("userName", response.fullname);
+		 sessionStorage.setItem("userId", response.id);
          window.location.reload();
   			},
   			error => {

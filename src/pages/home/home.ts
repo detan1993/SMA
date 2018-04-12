@@ -2,14 +2,20 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { ProductProvider } from '../../providers/product/product';
+import { VoucherProvider } from '../../providers/voucher/voucher';
 import { Product } from '../../Entities/Product';
+import { Voucher } from '../../Entities/Voucher';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  customerId:number;
   products : Product[];
+  vouchers : Voucher[];
+  newProducts: Product[];
+  
   horImgHeight:number;
   horImgWidth:number;
   row :number;
@@ -19,7 +25,7 @@ export class HomePage {
   images: Array<string>;
   grid: Array<Array<string>>; //array of arrays
 
-  constructor(public navCtrl: NavController , 	public toastCtrl: ToastController, public productProvider: ProductProvider ) {
+  constructor(public navCtrl: NavController , 	public toastCtrl: ToastController, public productProvider: ProductProvider, public voucherProvider: VoucherProvider) {
      this.initializeItems();
      this.horImgHeight = 40;
      this.horImgWidth = 40;
@@ -54,12 +60,15 @@ export class HomePage {
   });
 
   toast.present();
+  this.customerId = parseInt(sessionStorage.getItem("userId"));
   this.getAllActiveProducts();
-
+  this.getAllVouchers();
+	console.log("user Id is: " + this.customerId);
+  this.newProducts = [];
   }
 
 
-getItems(ev: any) {
+  getItems(ev: any) {
     // Reset items back to all of the items
     this.initializeItems();
 
@@ -87,5 +96,32 @@ getItems(ev: any) {
 		  }
 	  );
   }
+  
+  getAllVouchers(){
+	  console.log("Voucher.ts getAllVouchers() called");
+	  this.voucherProvider.getAllVouchers(this.customerId).subscribe(
+		 response =>{
+			  console.log("Response received");
+			  this.vouchers = response.voucherList
+			  console.log(this.vouchers);
+		  },
+		  error => {
+			  console.log("HTTP " + error.status + ": " + error.error.message);
+		  }
+	  );
+  }
 
+  addCartItem(newProduct: Product){
+	  console.log("Added to Cart: " + newProduct);
+	  this.newProducts.push(newProduct);
+  }
+  
+  checkInput(item: Product){
+	  if (!(typeof item.selectedSize === "undefined" || typeof item.selectedQuantity === "undefined")){
+		console.log("Validate(Selected Size Length: " + item.selectedSize.length + " Selected Quantity: " + item.selectedQuantity + ")");
+		console.log(item.selectedQuantity>0);
+		console.log(item.selectedSize.length>0);
+	  }
+	  return (!(item.selectedQuantity>0 && item.selectedSize.length>0));
+  }
 }

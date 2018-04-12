@@ -16,8 +16,10 @@ export class Product{
   images :Images[];
   sizes: ProductSize[];
 
+  selectedSize:String;
+  selectedQuantity:number;
 
   constructor(){
-
+	
   }
 }
