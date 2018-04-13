@@ -1,9 +1,13 @@
+import {ProductPurchase} from './ProductPurchase';
+
 export class Order{
-	id:number;
+	customerId:number;
+	voucherCode:String;
+	
 	totalAmount:number;
-	totalPointsAwarded:number;
 	datePaid:Date;
-	deliveryStatus:String;
+	
+	productPurchases:ProductPurchase[];
 	
 	constructor(){
 	}

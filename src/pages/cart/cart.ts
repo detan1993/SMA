@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Product } from '../../Entities/Product';
+import { ProductPurchase } from '../../Entities/ProductPurchase';
+import { OrderProvider } from '../../providers/order/order';
+import { Order } from '../../Entities/Order';
 
 /**
  * Generated class for the CartPage page.
@@ -13,28 +17,79 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'cart.html',
 })
 export class CartPage {
+	customerCart : Product[];
+	subtotal:number;
+	discountFromVoucher:number;
+	total:number;
+	voucherCode:String;
+	order: Order;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public orderProvider: OrderProvider) {
   }
 
   ionViewDidLoad() {
-    //getting carts that customer added to session storage
-    console.log('ionViewDidLoad CartPage');
-
-    let customerCart = JSON.parse(sessionStorage.getItem("customerCart"));
-    console.log("Customer Cart Size is " + customerCart.length );
-
-    if(customerCart.length > 0){
-      //Populate the data to the attributes here.
-      //Some one ionViewDidLoad, only launch one. Next time when you caome back to this page, it wont run this ionViewDidLoad again.
-      //Please help me verify this Shan thanks. :)
-      for(let i=0; i<customerCart.length; i++){
-        console.log( "Product Id" +  customerCart[i]["id"] +  ", Quantity: " + customerCart[i]["selectedQuantity"] +  ", Product Name " +  customerCart[i]["productName"] ) ;
-       }
-
-    }
-
-
+  }
+  
+  ionViewDidEnter(){
+	  console.log("cart enter");
+	  this.subtotal = 0;
+	  this.discountFromVoucher = 0;
+	  this.total =0;
+	  this.voucherCode = "";
+	  this.customerCart = [];
+	  this.order = new Order();
+	  
+	  this.convertSessionCartToProductArray();
+  }
+  
+  convertSessionCartToProductArray(){
+	  this.customerCart = JSON.parse(sessionStorage.getItem("customerCart"));
+	  console.log(this.customerCart);
+	  
+	  if(this.customerCart != null){
+		  for(let i=0; i<this.customerCart.length; i++){
+			this.subtotal += this.customerCart[i].price;
+			this.total += this.customerCart[i].price;
+		  }
+	  }
+  }
+  
+  applyVoucher(){
+	  
+  }
+  
+  makeOrder(){
+	  console.log("Make order called()");
+	  let productPurchases = [];
+	  
+	  this.order.customerId =  parseInt(sessionStorage.getItem("userId"));
+	  this.order.voucherCode = this.voucherCode;
+	  this.order.totalAmount = this.total;
+	  this.order.datePaid = new Date();
+	  
+	  for(let i=0; i<this.customerCart.length;i++){
+		  let newProductPurchase = new ProductPurchase();
+		  newProductPurchase.price = this.customerCart[i].price;
+		  newProductPurchase.quantity = this.customerCart[i].selectedQuantity;
+		  
+		  let newProductPurchaseProduct = new Product();
+		  newProductPurchaseProduct.id = this.customerCart[i].id;
+		  newProductPurchase.productPurchase = newProductPurchaseProduct;
+		  
+		  productPurchases.push(newProductPurchase);
+	  }
+	  
+	  this.order.productPurchases = productPurchases;
+	  
+	  
+		this.orderProvider.makeOrder(this.order).subscribe(
+		  response =>{
+			  console.log("Response received");
+		  },
+		  error => {
+			  console.log("HTTP " + error.status + ": " + error.error.message);
+		  }
+	  );
   }
 
 }

@@ -3,9 +3,9 @@ import {Images} from './Images';
 
 export class Product{
   id:number;
-  productCode: String;
-  productName: String;
-  description: String;
+  productCode:String;
+  productName:String;
+  description:String;
   price:number;
   team:String;
   gender:String;
@@ -13,8 +13,8 @@ export class Product{
   dateCreated:Date;
   status:String;
 
-  images :Images[];
-  sizes: ProductSize[];
+  images:Images[];
+  sizes:ProductSize[];
 
   selectedSize:String;
   selectedQuantity:number;
