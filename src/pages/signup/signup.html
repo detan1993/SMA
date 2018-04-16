@@ -1,0 +1,132 @@
+<!--
+  Generated template for the SignupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Sign Up!</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+<ion-list>
+  
+   <ion-item>
+    <ion-label floating>First Name<span style="color:red">*</span></ion-label>
+    <ion-input formControlName="firstName" type="text"></ion-input>
+  </ion-item>
+  
+  <ion-item *ngIf="authForm.controls.firstName.hasError('required') && authForm.controls.firstName.touched">
+            <p style="color:red">*Please enter First Name!</p>
+        </ion-item>
+
+   <ion-item>
+    <ion-label floating>Last Name<span style="color:red">*</span></ion-label>
+    <ion-input formControlName="lastName" type="text"></ion-input>
+  </ion-item>
+  
+  <ion-item *ngIf="authForm.controls.lastName.hasError('required') && authForm.controls.lastName.touched">
+            <p style="color:red">*Please enter Last Name!</p>
+     </ion-item>
+  
+  <ion-item>
+    <ion-label floating>Phone Number<span style="color:red">*</span></ion-label>
+    <ion-input formControlName="phoneNum" type="number"></ion-input>
+  </ion-item>
+  
+   <ion-item *ngIf="authForm.controls.phoneNum.hasError('required') && authForm.controls.phoneNum.touched">
+            <p style="color:red">*Please enter Phone Number!</p>
+        </ion-item>
+	
+	 <ion-item>
+  <ion-label floating>Gender</ion-label>
+  <ion-select formControlName="gender">
+  <ion-option value="Male">Male</ion-option>
+    <ion-option value="Female">Female</ion-option>
+  </ion-select>
+</ion-item>
+	
+	<ion-item *ngIf="authForm.controls.gender.hasError('required') && authForm.controls.gender.touched">
+            <p style="color:red">*Please select Gender!</p>
+        </ion-item>
+
+<ion-item>
+    <ion-label floating>Address<span style="color:red">*</span></ion-label>
+    <ion-input formControlName="address" type="text"></ion-input>
+  </ion-item>
+  
+   <ion-item *ngIf="authForm.controls.address.hasError('required') && authForm.controls.address.touched">
+            <p style="color:red">*Please enter Address!</p>
+        </ion-item>
+  
+  <ion-item>
+    <ion-label floating>Zip Code<span style="color:red">*</span></ion-label>
+    <ion-input formControlName="zipCode" type="number"></ion-input>
+  </ion-item>
+  
+   <ion-item *ngIf="authForm.controls.zipCode.hasError('required') && authForm.controls.zipCode.touched">
+            <p style="color:red">*Please enter Zip Code!</p>
+        </ion-item>
+  
+  <ion-item>
+  <ion-label floating>Date of Birth<span style="color:red">*</span></ion-label>
+  <ion-datetime formControlName="dateOfBirth" displayFormat="DD/MM/YYYY"></ion-datetime>
+</ion-item>
+
+ <ion-item *ngIf="authForm.controls.dateOfBirth.hasError('required') && authForm.controls.dateOfBirth.touched">
+            <p style="color:red">*Please enter Date of Birth!</p>
+        </ion-item> 
+
+ <ion-item>
+  <ion-label floating>Email<span style="color:red">*</span></ion-label>
+ <ion-input formControlName="email" type="email"></ion-input>
+</ion-item>
+
+<ion-item *ngIf="authForm.controls.email.hasError('required') && authForm.controls.email.touched">
+            <p style="color:red">*Please enter Email!</p>
+        </ion-item>
+		
+		<ion-item *ngIf="authForm.controls.email.hasError('invalidEmail') && authForm.controls.email.touched">
+            <p style="color:red">*Please enter a valid Email!</p>
+        </ion-item>
+
+<ion-item>
+  <ion-label floating>Password<span style="color:red">*</span></ion-label>
+ <ion-input formControlName="password" type="password" minlength="6"></ion-input>
+</ion-item>
+
+<ion-item *ngIf="authForm.controls.password.hasError('required') && authForm.controls.password.touched">
+            <p style="color:red">*Please enter Password!</p>
+        </ion-item>
+		
+		<ion-item *ngIf="authForm.controls.password.hasError('minlength') && authForm.controls.password.touched">
+            <p style="color:red">*Password not long enough. Minimum 6 characters.</p>
+        </ion-item>
+		
+
+		
+		<ion-item>
+  <ion-label floating>Re-enter Password<span style="color:red">*</span></ion-label>
+ <ion-input formControlName="confirmPassword" type="password"></ion-input>
+</ion-item>
+
+<ion-item *ngIf="authForm.controls.confirmPassword.hasError('required') && authForm.controls.confirmPassword.touched">
+            <p style="color:red">*Please confirm Password!</p>
+        </ion-item>
+		
+		<ion-item *ngIf="authForm.hasError('mismatchedPasswords') && authForm.controls.confirmPassword.touched">
+            <p style="color:red">*Passwords do not match!</p>
+        </ion-item>
+
+  
+</ion-list>
+
+  <button ion-button full color="primary" [disabled]="!authForm.valid" style="margin-top: 20px;" type="submit">Sign Up</button>   
+</form>
+</ion-content>

@@ -54,6 +54,32 @@ userLogin(username: String , password: String): Observable<any>
   );
 }
 
+createNewCustomer(customer: Customer): Observable<any>{
+	console.log("Customer.createNewCustomer() Provider called!");
+	
+	let path: string = '';
+	  if(this.platform.is('core') || this.platform.is('mobileweb'))
+	  {
+		path = this.baseUrl;
+	  }
+	  else
+	  {
+		path = this.fullBaseUrl;
+	  }
+	   console.log("*********** MY PATH IS " + path);
+	   
+	  return this.httpClient.post(path + "/addNewCustomer", customer, 
+			{
+			  headers:
+			  {
+				'content':"application/json",
+			  }
+			}).pipe
+			(
+			catchError(this.handleError)
+		  );
+}
+
 private handleError(error: HttpErrorResponse)
 {
   if (error.error instanceof ErrorEvent)

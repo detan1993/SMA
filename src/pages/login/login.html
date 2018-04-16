@@ -27,12 +27,27 @@
     <ion-label fixed > Password </ion-label>
     <ion-input type="Password" placeholder="Your Password" [(ngModel)]= "password"></ion-input>
   </ion-item>
+  
+  <ion-grid>
+  <ion-row>
+    <ion-col>
+	<ion-item class="login_header">
+		<button style="background-color:black; height:35px;" ion-button block (click)="login()">
+		  Login
+		</button>
+	  </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item class="login_header">
+		<button style="background-color:black; height:35px;" ion-button block (click)="openSignUpPage()">
+		  Sign Up
+		</button>
+	  </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
 
-  <ion-item class="login_header">
-    <button style="background-color:black; height:35px;" ion-button block (click)="login()">
-      Login
-    </button>
-  </ion-item>
+  
 </ion-list>
 </ion-content>

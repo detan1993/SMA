@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { AccountProvider } from '../../providers/account/account';
-// import { HomePage } from '../home/home';
+import { SignupPage } from '../signup/signup';
 
 
 /**
@@ -24,14 +25,19 @@ export class LoginPage {
   //loginErrorMessage: string;
 
 
-
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-  public accountProvider: AccountProvider) {
+  public accountProvider: AccountProvider, public modalCtrl: ModalController) {
     this.username = "";
     this.password = "";
   //  this.isLogin = false;
       // this.email = "Daviddetan93@gmail.com";
+  }
+  
+  openSignUpPage(){
+	  console.log('redirecting to signup page');
+	/*  let signUpModal = this.modalCtrl.create(SignUpPage);
+		signUpModal.present();*/
+		this.navCtrl.push(SignupPage);
   }
 
 
