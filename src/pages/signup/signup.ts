@@ -6,6 +6,7 @@ import { LoadingController } from 'ionic-angular';
 import { AccountProvider } from '../../providers/account/account';
 import { Customer } from '../../Entities/Customer';
 import { emailValidator, matchingPasswords } from '../../validators/validators';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the SignupPage page.
@@ -36,18 +37,6 @@ export class SignupPage {
 	dateRegistered : AbstractControl;
 	
 	customer : Customer;
-	
-	/*firstName : String;
-	lastName : String;
-	phoneNum : String;
-	gender : String;
-	address : String;
-	zipCode : String;
-	dateOfBirth : Date;
-	email : String;
-	password : String;
-	loyaltyPoints : number;
-	dateRegistered : Date;*/
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
   public alertCtrl: AlertController, 
@@ -106,7 +95,15 @@ export class SignupPage {
 			   let alert = this.alertCtrl.create({
           title: 'Success!',
           subTitle: 'Login now to start shopping with Sportify!',
-          buttons: ['OK']
+           buttons: [
+			{
+				text: 'OK',
+				handler: () => {
+				  console.log('OK clicked');
+				  this.navCtrl.push(LoginPage);
+			}
+			}
+    ]
         });
 		 alert.present();
 			  

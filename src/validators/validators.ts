@@ -1,3 +1,5 @@
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl } from '@angular/forms';
+
 
 export function emailValidator(control: FormControl): {[key: string]: any} {
   var emailRegexp = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
