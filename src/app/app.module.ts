@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { CartPage } from '../pages/cart/cart';
 import { ProfilePage } from '../pages/profile/profile';
 import { TabsPage } from '../pages/tabs/tabs';
+import { SignupPage } from '../pages/signup/signup';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -30,6 +31,7 @@ import { VoucherProvider } from '../providers/voucher/voucher';
     CartPage,
     ProfilePage,
     LoginPage,
+	SignupPage,
     TabsPage
   ],
   imports: [
@@ -46,6 +48,7 @@ import { VoucherProvider } from '../providers/voucher/voucher';
     CartPage,
     ProfilePage,
     LoginPage,
+	SignupPage,
     TabsPage
   ],
   providers: [
