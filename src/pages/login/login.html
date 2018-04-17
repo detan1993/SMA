@@ -1,3 +1,45 @@
+<ion-content class="login-content" padding>
+   <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="login-box">
+   
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            
+            <ion-item>
+              <ion-input placeholder="Email" type="email" [(ngModel)]="username"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-input placeholder="Password" type="Password" [(ngModel)]= "password"></ion-input>
+            </ion-item>
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col class="signup-col">
+         <button ion-button class="submit-btn" block (click)="login()">Login</button>
+          <button ion-button class="register-btn" block clear (click)="openSignUpPage()">Create New Account</button>
+        </ion-col>
+      </ion-row>
+      
+    
+  </div>
+</ion-content>
+
+
+
+
+
+
 <!--
   Generated template for the LoginPage page.
 
@@ -13,19 +55,19 @@
 </ion-header> -->
 
 
-<ion-content padding class="login_Page">
+<!-- <ion-content padding class="login_Page">
   <ion-list class=login_list>
     <ion-list-header class="login_header" >
-      <h1> SPORTIFY!  </h1>
+      <h1><i>Welcome to Sportify!</i></h1>
     </ion-list-header>
-    <ion-item class="login_header">
-      <ion-label fixed> Username </ion-label>
-      <ion-input type="email" placeholder="Your Username"  [(ngModel)]="username"></ion-input>
+    <ion-item class="textBox">
+      <ion-label floating> Username </ion-label>
+      <ion-input type="email" [(ngModel)]="username"></ion-input>
     </ion-item>
 
-    <ion-item class="login_header">
-    <ion-label fixed > Password </ion-label>
-    <ion-input type="Password" placeholder="Your Password" [(ngModel)]= "password"></ion-input>
+    <ion-item class="textBox">
+    <ion-label floating> Password </ion-label>
+    <ion-input type="Password" [(ngModel)]= "password"></ion-input>
   </ion-item>
   
   <ion-grid>
@@ -51,3 +93,4 @@
   
 </ion-list>
 </ion-content>
+ -->

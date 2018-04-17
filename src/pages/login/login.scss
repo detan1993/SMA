@@ -1,31 +1,67 @@
 page-login {
-
-
-.login_list{
-  background-color: rgb(242,242,242);
-  opacity: 0.8;
-  margin-top: 180px;
-}
-.login_header{
-  background-color: transparent;
-color:black;
-
-}
-
-
-.login_Page{
-
- background-image: url('../assets/imgs/Background.jpg');
-  background-color: transparent;
-  background-size:cover;
-}
-h1{
-color:black;
-
-}
-  ion-content{
-    background-color: black;
-    //  background-image: url('img/background.jpg');
+ 
+  .login-content {
+   background-image: url('../assets/imgs/bg.jpg');
+   background-size:500px;
+   background-repeat: no-repeat;
+   
+ 
+    .logo-row {
+	margin-top:40px;
+      padding-top: 70px;
+      padding-bottom: 50px;
+	  background-image: url('../assets/imgs/logo_sportify.png');
+	   background-size:300px;
+	   background-repeat: no-repeat;
+    }
+ 
+    .login-box {
+     background-color: rgb(242,242,242);
+	opacity: 0.8;
+      padding: 20px 20px 0px 20px;
+      margin-top: 50px;
+	  border-radius: 10px !important;
+    }
+ 
+    ion-row {
+       align-items: center;
+       text-align: center;
+     }
+ 
+     ion-item {
+         border-radius: 30px !important;
+         padding-left: 30px !important;
+         font-size: 0.9em;
+         margin-bottom: 10px;
+         border: 1px solid #ffffff;
+         border-bottom: 0px !important;
+         box-shadow: none !important;
+     }
+ 
+     .signup-col {
+       margin: 0px 16px 0px 16px;
+       padding-bottom: 20px;
+     }
+ 
+     .item-inner {
+       border-bottom-color: #ffffff !important;
+       box-shadow: none !important;
+     }
+ 
+     .submit-btn {
+       background: #000000;
+       border-radius: 30px !important;
+       border: 1px solid #ffffff;
+     }
+	 
+	 .submit-btn:hover {
+       background: orange !important;
+	   }
+ 
+     .register-btn {
+       color: #000000;
+       font-size: 0.8em;
+     }
   }
-
+ 
 }
