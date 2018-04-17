@@ -21,6 +21,7 @@ import { ProductProvider } from '../providers/product/product';
 import { OrderProvider } from '../providers/order/order';
 import { VoucherProvider } from '../providers/voucher/voucher';
 
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { VoucherProvider } from '../providers/voucher/voucher';
     AccountProvider,
     ProductProvider,
     OrderProvider,
-    VoucherProvider
+    VoucherProvider,
+	DecimalPipe
   ]
 })
 export class AppModule {}

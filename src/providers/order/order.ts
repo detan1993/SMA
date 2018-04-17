@@ -38,15 +38,17 @@ baseUrl = "/api/Order";
 	  {
 		path = this.fullBaseUrl;
 	  }
+	   
+	   console.log("*********** Order No JSon: " + order);
 	   console.log("*********** MY PATH IS " + path);
 	   
+	   console.log("*********** Order Json: " + JSON.stringify(order));	
 	   
-	  
-	  return this.httpClient.post(path + "/addCustomerOrder", order, 
+	  return this.httpClient.post(path + "/addCustomerOrder", JSON.stringify(order), 
 			{
 			  headers:
 			  {
-				'content':"application/json",
+				'content-type':"application/json",
 			  }
 			}).pipe
 			(

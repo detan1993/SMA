@@ -33,69 +33,11 @@
 							 <ion-input float-right style="background-color:lightGrey; height:30px; opacity:0.2;" type="number" [(ngModel)]="product.selectedQuantity"></ion-input>
 						</ion-item>
 						<ion-item>
-							<button (click)="addCartItem(product)" class="cart_Button">Add to Cart</button>
+							<button class="cart_button" (click)="addCartItem(product)" class="cart_Button">Add to Cart</button>
 						</ion-item>
 					</ion-card-content>
 				</ion-card>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
-
-<h4>Retrieve All Unused Vouchers for customer</h4>
-	<ion-item *ngFor="let voucher of vouchers;">
-		{{voucher.id}}
-	</ion-item>
-
-
-<h4> Latest Product </h4>
-<ion-grid class="home_grid">
-  <!-- //*ngFor="let row of grid" -->
-    <ion-scroll scrollX="true" style="width:300; height:170px" >
-        <ion-row nowrap class="headerChip">
-                <ion-col><!-- dimensions set using input properties -->
-                <ion-img width="120" height="120" src="../assets/imgs/MadridTest.jpg"></ion-img></ion-col>
-                <ion-col>
-                <ion-img width="120" height="120" src="../assets/imgs/ArseTest.jpg"></ion-img>
-                </ion-col>
-                <ion-col>
-               <ion-img width="120" height="120" src="../assets/imgs/chealseaTest.jpg"></ion-img> </ion-col>
-          </ion-row>
-      </ion-scroll>
-</ion-grid>
-
-
-
-<h4> Choose Your Jersey </h4>
-<ion-grid class="home_grid">
-  <!-- //*ngFor="let row of grid" -->
-    <ion-row >
-         <ion-col><!-- dimensions set using input properties -->
-			<ion-img width="185" height="185" src="../assets/imgs/MadridTest.jpg"></ion-img>
-		 </ion-col>
-         <ion-col>
-         <ion-img width="185" height="185" src="../assets/imgs/ArseTest.jpg"></ion-img>
-        </ion-col>
-    </ion-row>
-    <ion-row >
-         <ion-col ><!-- dimensions set using input properties -->
-         <ion-img width="185" height="185" src="../assets/imgs/MadridTest.jpg"></ion-img></ion-col>
-         <ion-col >
-         <ion-img width="185" height="185" src="../assets/imgs/ArseTest.jpg"></ion-img>
-        </ion-col>
-    </ion-row>
-</ion-grid>
-
-
-
-<!-- <ion-list>
-  <ion-item *ngFor="let item of items">
-    {{ item }}
-  </ion-item>
-</ion-list> -->
-
-<!--
-DROP DOWN LIST
-https://forum.ionicframework.com/t/ion-select-with-ngfor/65940
--->
-
 </ion-content>

@@ -15,20 +15,20 @@
 
 <ion-content padding>
 <!--TODO: Show cart only if there are items, but it doesnt work-->
-	<!--<div *ng-show="customerCart.length <=0">-->
+<div *ngIf="customerCart">
 		<h2>My Cart!</h2>
-		<ion-list *ngFor="let cartItem of customerCart">
+		<ion-list *ngFor="let cartItem of customerCart;let i = index">
 			<ion-row>
 				<ion-label float-left>{{cartItem.productName}}</ion-label>
-				<button float-right ion-button icon-only>
+				<button float-right ion-button icon-only (click)="removeFromCart(i,cartItem)">
 					<ion-icon name="close"></ion-icon>
 				</button>
 			</ion-row>
 			<ion-row>
 				<div float-left>
-					<button ion-button icon-only><ion-icon name="remove"></ion-icon></button>
+					<button ion-button icon-only (click)="minusButtonClick(i,cartItem)"><ion-icon name="remove" ></ion-icon></button>
 					{{cartItem.selectedQuantity}}
-					<button ion-button icon-only><ion-icon name="add"></ion-icon></button>
+					<button ion-button icon-only (click)="plusButtonClick(i,cartItem)"><ion-icon name="add" ></ion-icon></button>
 				</div>
 				<ion-label float-right>${{cartItem.price}}</ion-label>
 			</ion-row>
@@ -48,10 +48,14 @@
 		<ion-row>
 			<ion-label>Use My Voucher</ion-label>
 			<ion-input [(ngModel)]="voucherCode"></ion-input>
-			<button ion-button>Apply</button>
+			<button ion-button (click)="applyVoucher()">Apply</button>
 		</ion-row>
 		<ion-row>
 			<button ion-button (click)="makeOrder()">MAKE ORDER</button>
 		</ion-row>
-	<!--</div>-->
+</div>
+
+<div *ngIf="!customerCart">
+	<h2>You have no items!</h2>
+</div>
 </ion-content>

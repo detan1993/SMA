@@ -2,9 +2,10 @@ import {Product} from './Product';
 
 export class ProductPurchase
 {
-	price:number;
-	quantity:number;
+	pricePurchase:number;
+	qtyPurchase:number;
 	productPurchase:Product;
+	sizePurchase:String;
 
 	constructor()
 	{
