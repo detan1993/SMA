@@ -15,10 +15,11 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 @Injectable()
 export class VoucherProvider {
 
-ipAddress = '192.168.1.8';
+/* ipAddress = '192.168.1.8';
 portNo = '3446';
-fullBaseUrl = 'http://' + this.ipAddress + ':' + this.portNo + '/Sportify-war/Resources/Voucher';
+fullBaseUrl = 'http://' + this.ipAddress + ':' + this.portNo + '/Sportify-war/Resources/Voucher'; */
 baseUrl = "/api/Voucher"; 
+fullBaseUrl = 'http://is3106-gp02.southeastasia.cloudapp.azure.com:8080/Sportify-war/Resources/Voucher';
 
   constructor(public platform: Platform,public httpClient: HttpClient) {
     console.log('Hello ProductProvider Provider');

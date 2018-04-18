@@ -19,10 +19,12 @@ const httpOptions = {
 @Injectable()
 export class ProductProvider {
 
-ipAddress = '192.168.1.8';
-portNo = '3446';
-fullBaseUrl = 'http://' + this.ipAddress + ':' + this.portNo + '/Sportify-war/Resources/Product';
+/* ipAddress = '192.168.1.8';
+portNo = '3446'; */
+/* fullBaseUrl = 'http://' + this.ipAddress + ':' + this.portNo + '/Sportify-war/Resources/Product'; */
 baseUrl = "/api/Product";  // the system will replace the api with the proxy URL that we speicfy in ionic.config.json
+
+fullBaseUrl = 'http://is3106-gp02.southeastasia.cloudapp.azure.com:8080/Sportify-war/Resources/Product';
 
   constructor(public platform: Platform,public httpClient: HttpClient) {
     console.log('Hello ProductProvider Provider');
