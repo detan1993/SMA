@@ -18,8 +18,8 @@
   
   <h4>My available vouchers</h4>
   <ion-list>
-	<ion-row *ngFor="let voucher of vouchers">
-		<span>Code:{{voucher.voucherCode}}  -  Discount %:{{voucher.voucherValue}} </span>
+	<ion-row *ngFor="let voucherCount of voucherCounts">
+		<span>Code:{{voucherCount.voucherCode}}  -  Discount %:{{voucherCount.voucherDiscount}} - X{{voucherCount.voucherCount}} </span>
 		
 	</ion-row>
   </ion-list>

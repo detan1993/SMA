@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Voucher } from '../../Entities/Voucher';
 import { VoucherProvider } from '../../providers/voucher/voucher';
-
+import { VoucherCount } from '../../Entities/VoucherCount';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -17,6 +17,11 @@ import { VoucherProvider } from '../../providers/voucher/voucher';
 export class ProfilePage {
 
 	vouchers : Voucher[];
+	voucherCounts: VoucherCount[];
+	
+	voucherCodes: String[];
+	voucherDiscounts: number[];
+	voucherQuantity : number[];
 	
   constructor(public navCtrl: NavController, public navParams: NavParams, public voucherProvider: VoucherProvider) {
   }
@@ -29,6 +34,12 @@ export class ProfilePage {
   ionViewDidEnter(){
 	  console.log("ionViewDidEnter()");
 	  this.getAllVouchers();
+	  this.voucherCodes = [];
+	  this.voucherDiscounts = [];
+	  this.voucherQuantity = [];
+	  this.voucherCounts = [];
+	  
+	  this.prepareVoucherQuantity();
   }
   
     getAllVouchers(){
@@ -43,6 +54,28 @@ export class ProfilePage {
 			  console.log("HTTP " + error.status + ": " + error.error.message);
 		  }
 	  );
+	  
+	  prepareVoucherQuantity(){
+		  for(let voucher of this.vouchers){
+			  if(this.voucherCodes.includes(voucher.voucherCode)){
+				let i = voucherCodes.indexOf(voucher.voucherCode);
+				this.voucherCounts[i]++;
+			  }else{
+				  this.voucherCodes.push(voucher.voucherCode);
+				  this.voucherDiscounts.push(voucher.voucherValue);
+				  this.voucherCounts.push(1);
+			  }
+		  }
+		  
+		  this.voucherCounts = [];
+		  for(let i in this.voucherCodes){
+			  let newCount = new VoucherCount();
+			  newCount.voucherCode = this.voucherCodes[i];
+			  newCount.voucherDiscount = this.voucherDiscounts[i];
+			  newCount.voucherQuantity = this.voucherQuantity[i];
+			  this.voucherCounts.push(newCount);
+		  }
+	  }
   }
 
 }
