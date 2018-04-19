@@ -7,18 +7,25 @@
     <ion-col></ion-col>
   </ion-row>
   <div class="login-box">
-   
+   <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
       <ion-row>
         <ion-col>
           <ion-list inset>
             
             <ion-item>
-              <ion-input placeholder="Email" type="email" [(ngModel)]="username"></ion-input>
+              <ion-input placeholder="Email" type="email" formControlName="username"></ion-input>
             </ion-item>
+			
+			<ion-item *ngIf="loginForm.controls.username.hasError('required') && loginForm.controls.username.touched">
+            <p style="color:red;">*Please enter Email!</p>
+        </ion-item>
             
             <ion-item>
-              <ion-input placeholder="Password" type="Password" [(ngModel)]= "password"></ion-input>
+              <ion-input placeholder="Password" type="Password" formControlName="password"></ion-input>
             </ion-item>
+			<ion-item *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
+            <p style="color:red">*Please enter Password!</p>
+        </ion-item>
             
           </ion-list>
         </ion-col>
@@ -26,12 +33,12 @@
       
       <ion-row>
         <ion-col class="signup-col">
-         <button ion-button class="submit-btn" block (click)="login()">Login</button>
+		  <button ion-button class="submit-btn" block [disabled]="!loginForm.valid" type="submit">Login</button> 
           <button ion-button class="register-btn" block clear (click)="openSignUpPage()">Create New Account</button>
         </ion-col>
       </ion-row>
       
-    
+    </form>
   </div>
 </ion-content>
 

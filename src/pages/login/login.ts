@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import { AccountProvider } from '../../providers/account/account';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { SignupPage } from '../signup/signup';
 
 
@@ -19,16 +20,26 @@ import { SignupPage } from '../signup/signup';
 })
 export class LoginPage {
 
-  username :String;
-  password : String;
+ /*  username :String;
+  password : String; */
+  loginForm : FormGroup;
+  username: AbstractControl;
+  password: AbstractControl;
+  
 //  isLogin: boolean;
   //loginErrorMessage: string;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController,
-  public accountProvider: AccountProvider, public modalCtrl: ModalController) {
-    this.username = "";
-    this.password = "";
+  public accountProvider: AccountProvider, public modalCtrl: ModalController, public formBuilder: FormBuilder) {
+  /*   this.username = "";
+    this.password = ""; */
+	
+	this.navCtrl = navCtrl;
+	 this.loginForm = formBuilder.group({
+		 username: ['', Validators.compose([Validators.required])],
+		password: ['', Validators.compose([Validators.required])]
+	 });
   //  this.isLogin = false;
       // this.email = "Daviddetan93@gmail.com";
   }
@@ -49,23 +60,10 @@ export class LoginPage {
     }*/
 
   }
-
-  login() {
-
-   if(this.password == null)
-   {
-     let alert = this.alertCtrl.create({
-      title: 'ERROR',
-      subTitle: 'Username and Password Cannot be Empty!',
-      buttons: ['Try Again']
-    });
-    alert.present();
-
-
-   }else{
-     console.log("Password not empty");
-     console.log("Retrieveing credential");
-     this.accountProvider.userLogin(this.username, this.password).subscribe(
+  
+   onSubmit(value: any): void {
+	   
+	    this.accountProvider.userLogin(value.username, value.password).subscribe(
   			response => {
   			  // this.infoMessage = "Account is " + response.id + " created successfully";
   				// // this.errorMessage = null;
@@ -81,20 +79,13 @@ export class LoginPage {
          console.log("HTTP " + error.status + ": " ); //error.error.message
          let alert = this.alertCtrl.create({
           title: 'ERROR',
-          subTitle: 'You Have Entered Invalid Username or Password!',
+          subTitle: 'Invalid Username or Password!',
           buttons: ['Try Again']
         });
         alert.present();
   				// this.errorMessage = "HTTP " + error.status + ": " + error.error.message;
   			}
   		);
-
-
-  //   this.navCtrl.push(HomePage);
+	   
    }
- }
-
-
-
-
 }

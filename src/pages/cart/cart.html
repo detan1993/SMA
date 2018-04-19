@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Your Cart</ion-title>
+    <ion-title>SHOPPING CART</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,23 +16,37 @@
 <ion-content padding>
 <!--TODO: Show cart only if there are items, but it doesnt work-->
 <div *ngIf="customerCart">
-		<h2>My Cart!</h2>
+		
 		<ion-list *ngFor="let cartItem of customerCart;let i = index">
-			<ion-row>
-				<ion-label float-left>{{cartItem.productName}}</ion-label>
-				<button float-right ion-button icon-only (click)="removeFromCart(i,cartItem)">
-					<ion-icon name="close"></ion-icon>
+		 
+		 <ion-item-sliding>
+		 
+		 <ion-item>
+			
+			<img height="150" width="150" src="http://is3106-gp02.southeastasia.cloudapp.azure.com:8080/Sportify-war{{cartItem.images[0].imagePath}}" item-left>
+			
+				<ion-label float-left style="margin-left:30px">{{cartItem.productName}}</ion-label>
+
+					<ion-label float-right>${{cartItem.price}}</ion-label>
+
+			</ion-item>
+			<ion-item-options side="right">
+				 <button ion-button (click)="removeFromCart(i,cartItem)">
+					<ion-icon name="trash"></ion-icon>
+					Delete
 				</button>
-			</ion-row>
-			<ion-row>
-				<div float-left>
-					<button ion-button icon-only (click)="minusButtonClick(i,cartItem)"><ion-icon name="remove" ></ion-icon></button>
+				
+				</ion-item-options>
+			</ion-item-sliding>
+			<button ion-button (click)="minusButtonClick(i,cartItem)"><ion-icon name="remove" ></ion-icon>
+				Minus
+				</button>
 					{{cartItem.selectedQuantity}}
-					<button ion-button icon-only (click)="plusButtonClick(i,cartItem)"><ion-icon name="add" ></ion-icon></button>
-				</div>
-				<ion-label float-right>${{cartItem.price}}</ion-label>
-			</ion-row>
+					<button ion-button (click)="plusButtonClick(i,cartItem)"><ion-icon name="add" ></ion-icon>
+					Add
+					</button>
 		</ion-list>
+		
 		<ion-row>
 			<ion-label float-left>Subtotal:</ion-label>
 			<ion-label float-right>${{subtotal}}</ion-label>
@@ -48,14 +62,16 @@
 		<ion-row>
 			<ion-label>Use My Voucher</ion-label>
 			<ion-input [(ngModel)]="voucherCode"></ion-input>
-			<button ion-button (click)="applyVoucher()">Apply</button>
+			<button class="buttons" (click)="applyVoucher()">Apply</button>
 		</ion-row>
 		<ion-row>
-			<button ion-button (click)="makeOrder()">MAKE ORDER</button>
+			<button class="buttons" (click)="makeOrder()">MAKE ORDER</button>
 		</ion-row>
+
+		
 </div>
 
-<div *ngIf="!customerCart">
-	<h2>You have no items!</h2>
+<div *ngIf="!customerCart" text-center>
+	<h2>You have no items! Start shopping now!</h2>
 </div>
 </ion-content>

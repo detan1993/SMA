@@ -25,7 +25,7 @@ export class HomePage {
 	  let justPurchased = sessionStorage.getItem("hasJustPurchased");
 	  let toast = this.toastCtrl.create(
 	  {
-		message: 'Welcome Back Dear ' + this.fullname ,
+		message: 'Welcome to Sportify ' + this.fullname + '!' ,
 		cssClass: 'toast',
 		duration: 3000
 	  });
@@ -70,7 +70,52 @@ export class HomePage {
 
   addCartItem(newProduct: Product){
 	  if(this.checkInput(newProduct)){
-		  this.newProducts.push(newProduct);
+		  
+		let productCode : String = newProduct.productCode;
+		let selectedSize : String = newProduct.selectedSize;
+		let sameProduct : boolean = false;
+		
+		console.log ("New productCode " + productCode);
+		console.log ("New selectedSize " + selectedSize);
+		 
+		if (this.newProducts != null){
+			 for (let i=0; i < this.newProducts.length; i++){
+				 if (this.newProducts[i].productCode == productCode)
+				 {
+					console.log("Same Product Code");
+					 if (this.newProducts[i].selectedSize == selectedSize)
+					 {
+						 console.log("Same Product Size");
+						//same product with same size, so add quantity
+						let previousQuantity : number = this.newProducts[i].selectedQuantity;
+						let addedQuantity : number = newProduct.selectedQuantity;
+						let newQuantity : number = +previousQuantity + +addedQuantity;
+						console.log("Previous Product Quantity " + previousQuantity);
+						console.log("Added Product Quantity " + addedQuantity);
+						console.log("New Product Quantity " + newQuantity);
+						
+						//this.newProducts[i].selectedQuantity += newProduct.selectedQuantity;
+						 
+						//remove the previous product
+						let index: number = this.newProducts.indexOf(this.newProducts[i]);
+						if (index != -1){
+							this.newProducts.splice(index, 1);
+						}
+						
+						newProduct.selectedQuantity = newQuantity;
+						//add the updated quantity
+						this.newProducts.push(newProduct);
+						sameProduct = true;
+						break;
+					 }
+				 }
+			 }
+		}		
+		// if not same product, push new product
+			if (sameProduct == false){
+				this.newProducts.push(newProduct);
+			}
+		  
 		  sessionStorage.setItem("customerCart" , JSON.stringify(this.newProducts));
 		  console.log(JSON.parse(sessionStorage.getItem("customerCart")));
 		  
@@ -84,9 +129,9 @@ export class HomePage {
 		  toast.present();
 	  }else{
 		let alert = this.alertCtrl.create({
-          title: 'ERROR',
-          subTitle: 'Please choose a valid size and quantity.',
-          buttons: ['Ok']
+          title: 'NOTE',
+          subTitle: 'Please select a size and your desired quantity.',
+          buttons: ['OK']
         });
         alert.present();
 	  }

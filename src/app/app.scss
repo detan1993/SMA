@@ -14,3 +14,20 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.toolbar-title.toolbar-title-md, 
+.toolbar-title.toolbar-title-ios, 
+.toolbar-title.toolbar-title-wp { color: white; text-align:center }
+
+.toolbar-background {
+  background-color: black;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+* {
+    font-family: 'Oswald', sans-serif;
+}
+
+
+
