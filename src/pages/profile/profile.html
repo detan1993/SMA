@@ -15,7 +15,12 @@
 
 <ion-content padding>
   <h2>My Profile</h2>
-  <p>
-    Not Implemented!
-  </p>
+  
+  <h4>My available vouchers</h4>
+  <ion-list>
+	<ion-row *ngFor="let voucher of vouchers">
+		<span>Code:{{voucher.voucherCode}}  -  Discount %:{{voucher.voucherValue}} </span>
+		
+	</ion-row>
+  </ion-list>
 </ion-content>

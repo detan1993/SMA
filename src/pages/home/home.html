@@ -6,23 +6,26 @@
 <h4>Retrieve all products</h4>
 	<ion-grid class="home_grid">
 		<ion-row>
-			<ion-col *ngFor="let product of products;" col-6>
+			<ion-col *ngFor="let product of products;" col-12>
 				<ion-card>
-					<ion-card-header>
+					<ion-card-header text-wrap>
 						{{product.productName}}
 					</ion-card-header>
 					<ion-card-content>
-						<img src="test.jpg"/><br>
+						<ion-img height="150" width="150" src="http://is3106-gp02.southeastasia.cloudapp.azure.com:8080/Sportify-war{{product.images[0].imagePath}}">
+						</ion-img><br>
 						<ion-item>
 							<ion-label>${{product.price}}</ion-label>
 						</ion-item>
 						<ion-item>
-							<span float-left>{{product.country}}</span>
-							<span float-right>{{product.team}}</span>
+							<span>{{product.country}}</span>
+						</ion-item>
+						<ion-item>
+							<span>{{product.team}}</span>
 						</ion-item>
 						<ion-item>
 							<ion-label>Size</ion-label>
-							<ion-select placeholder="Size"  [(ngModel)]="product.selectedSize" >
+							<ion-select placeholder="Size" [(ngModel)]="product.selectedSize" >
 								<ion-option *ngFor="let size of product.sizes" value="{{size.size}}">
 									{{size.size}}
 								</ion-option>
