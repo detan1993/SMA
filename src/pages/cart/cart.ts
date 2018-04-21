@@ -198,11 +198,20 @@ export class CartPage {
 		  this.customerCart[i].selectedQuantity --;
 		  this.subtotal -= this.customerCart[i].price;
 		}
-		
 		console.log("After: " + this.customerCart[i].price + " " + this.subtotal);
-
-		this.calculateTotal();
-		sessionStorage.setItem("customerCart" , JSON.stringify(this.customerCart));
+		
+		if(this.customerCart[i].selectedQuantity <=0){
+			this.customerCart.splice(i,1);
+		}
+		
+		if(this.customerCart.length<=0){
+		  this.customerCart = null;
+		  sessionStorage.setItem("customerCart", null);
+		  console.log("remove: empty cart: " + this.customerCart);
+		}else{
+			this.calculateTotal();
+			sessionStorage.setItem("customerCart" , JSON.stringify(this.customerCart));
+		}
   }
   
   plusButtonClick(i:number,editProduct: Product){

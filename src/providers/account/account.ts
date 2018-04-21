@@ -19,8 +19,9 @@ const httpOptions = {
 @Injectable()
 export class AccountProvider {
 
-/* ipAddress = '192.168.1.8';
-portNo = '3446'; */
+/*ipAddress = '192.168.1.8';
+portNo = '3446';
+fullBaseUrl = 'http://' + this.ipAddress + ':' + this.portNo + '/Sportify-war/Resources/Order'; */
 fullBaseUrl = 'http://is3106-gp02.southeastasia.cloudapp.azure.com:8080/Sportify-war/Resources/Account';
 
 

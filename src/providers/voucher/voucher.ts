@@ -15,7 +15,7 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 @Injectable()
 export class VoucherProvider {
 
-/* ipAddress = '192.168.1.8';
+/*ipAddress = '192.168.1.8';
 portNo = '3446';
 fullBaseUrl = 'http://' + this.ipAddress + ':' + this.portNo + '/Sportify-war/Resources/Voucher'; */
 baseUrl = "/api/Voucher"; 

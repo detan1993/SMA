@@ -39,7 +39,7 @@
 						</ion-item>
 						<ion-item>
 							<ion-label float-left>Quantity:</ion-label>
-							 <ion-input float-right style="color:black;background-color:lightGrey; height:40px; opacity:0.2;" type="number" [(ngModel)]="product.selectedQuantity"></ion-input>
+							 <ion-input float-right style="color:black;background-color:lightGrey; height:40px; opacity:0.2;" type="number" [(ngModel)]="product.selectedQuantity" min="0"></ion-input>
 						</ion-item>
 						<ion-item>
 							<button (click)="addCartItem(product)" class="cart_Button">Add to Cart</button>

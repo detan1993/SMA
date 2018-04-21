@@ -72,6 +72,8 @@ export class LoginPage {
          sessionStorage.setItem("userIsLogin", "true");
          sessionStorage.setItem("userName", response.fullname);
 		 sessionStorage.setItem("userId", response.id);
+		 sessionStorage.setItem("userEmail", response.email);
+		 sessionStorage.setItem("userAddress", response.address);
          window.location.reload();
   			},
   			error => {

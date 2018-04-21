@@ -14,13 +14,65 @@
 
 
 <ion-content padding>
-  <h2>My Profile</h2>
+  <h4>My Profile</h4>
+  <ion-grid>
+	<ion-row>
+		<ion-col>
+		Full Name:
+		</ion-col>
+		<ion-col col-8>
+		{{userFullName}}
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col>
+		Email:
+		</ion-col>
+		<ion-col col-8>
+		{{userEmail}}
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col>
+		Address:
+		</ion-col>
+		<ion-col col-8>
+		{{userAddress}}
+		</ion-col>
+	</ion-row>
+  </ion-grid>
+  
+  <hr/>
   
   <h4>My available vouchers</h4>
-  <ion-list>
-	<ion-row *ngFor="let voucherCount of voucherCounts">
-		<span>Code:{{voucherCount.voucherCode}}  -  Discount %:{{voucherCount.voucherDiscount}} - X{{voucherCount.voucherCount}} </span>
-		
+  <ion-grid>
+	<ion-row>
+		<ion-col>
+			Voucher Code
+		</ion-col>
+		<ion-col>
+			Discount Percentage
+		</ion-col>
+		<ion-col>
+			Expiry Date
+		</ion-col>
+		<ion-col>
+			Quantity Left
+		</ion-col>
 	</ion-row>
-  </ion-list>
+	<ion-row *ngFor="let voucherCount of voucherCounts">
+		<ion-col>
+			{{voucherCount.voucherCode}}
+		</ion-col>
+		<ion-col>
+			{{voucherCount.voucherDiscount}}
+		</ion-col>
+		<ion-col>
+			{{voucherCount.voucherDate | date: 'dd/MM/yyyy'}}
+		</ion-col>
+		<ion-col>
+			{{voucherCount.voucherCount}}
+		</ion-col>
+	</ion-row>
+  </ion-grid>
 </ion-content>
